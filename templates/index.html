@@ -1,0 +1,606 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="static/main.css">
+    <title>Cloudinary Collage</title>
+    <link rel="icon" href="https://res.cloudinary.com/yelenik/image/upload/c_pad,w_64,h_64/v1649319855/cloudinary_logo.png">
+    <style>
+      h1,h2,p,.label{
+        font-family: Arial, Helvetica, sans-serif;
+        font-weight: normal;
+      
+        width:500px;
+        margin-left:100px;
+      }
+      .grid-container {
+        display: inline-grid;
+        grid-template-columns: auto auto auto auto;
+        background-color: white;
+        padding: 10px;
+        margin-left:-0px;
+
+
+      }
+      .grid-item {
+        background: rgba(0, 92, 228, 0.18);
+        border: 1px solid white;
+        padding: 20px;
+        font-size: 30px;
+        text-align: center;
+        width: 44px;
+        height: 44px;
+        margin:3px;
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        border-radius: 4px; 
+      }
+      .text {
+        width:20px;
+        height:30px;
+        border: none;
+        background-color: transparent;
+        resize: none;
+        outline: none;
+        font-size:25px;
+        align-self:center;
+      }
+      .img_outer_container{
+        display:flex;
+        align-items:center;
+        flex-wrap:nowrap;
+        flex-direction:column;
+        width:90%;
+        max-width:725px;
+        margin-left:-115px;
+        
+      }
+      .img_container{
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 0px;
+        gap: 8px;
+        isolation: isolate;
+        max-height:650px;
+        margin-right:100px;
+        max-width:550px;
+        margin-left:-80px;
+
+      }
+      .img_item{
+        width:25%;
+        max-width:170px;
+        min-width:130px;
+        border: 1px solid white;
+        margin:-5px;
+        border-radius: 5px 5px 5px 5px;
+        position:relative;
+      }
+      .button {
+        background: #005CE4;
+        color: #fff;
+        border: 1px solid #eee;
+        border-radius: 4px
+        box-shadow: 5px 5px 5px #eee;
+        text-shadow: none;
+        width:78px;
+        height:40px;
+        font-size:14px;
+        margin-bottom:20px;
+        margin-right:5px;
+        margin-left:5px;
+        
+      }
+      .button:hover {
+        background: #000080;
+      }
+      .button:focus {
+        background: #6495ed;
+      }
+      .button:active:after {
+        background: #016ABC;
+      }
+      figure {
+        float: center;
+        width: 20%;
+        text-align: center;
+        font-style: italic;
+        font-size: smaller;
+        text-indent: 0;
+        border: thin silver solid;
+        margin: 0.5em;
+        padding: 0.5em;
+      }
+      .img_select{
+        width:100%;
+        max-width:150px;
+      }
+      .top_container{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-wrap:nowrap;
+        flex-direction:column;
+      }
+      .top_container_buttons{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-wrap:nowrap;  
+        margin-left:0px;
+      }
+      .top_container_left{
+        display:flex;
+        align-items:center;
+        flex-wrap:nowrap;
+        flex-direction:column;
+
+        width:90%;
+        max-width:725px;
+      }
+    </style>
+  </head>
+  <body style="display:flex; justify-content:center; margin-left:60px;">
+    <div style="self-align:center;">
+    <div class="top_container_left">
+      
+      <h1>Create a Cloudinary Collage!</h1>
+      <p>Drag and drop the images into the cells of the template.
+      <br><br>
+        If you want an image to span a few cells, drag the image<br> from its cell and drop it in another one.
+      </p>
+
+      
+      <form method="POST">
+        <div class="grid-container">
+          <div class="grid-item" id="1" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input class="text" type="hidden" name="pos1" value=""/>
+          </div>
+          <div class="grid-item" id="2" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input class="text" type="hidden" name="pos2" value=""/>
+          </div>
+          <div class="grid-item" id="3" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input class="text" type="hidden" name="pos3" value=""/>
+          </div>  
+          <div class="grid-item" id="4" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input class="text" type="hidden" name="pos4" value=""/>
+          </div>  
+          <div class="grid-item" id="5" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input class="text" type="hidden" name="pos5" value=""/>
+          </div>
+          <div class="grid-item" id="6" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input class="text" type="hidden" name="pos6" value=""/>
+          </div>
+          <div class="grid-item" id="7" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input class="text" type="hidden" name="pos7" value=""/>
+          </div>  
+          <div class="grid-item" id="8" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input class="text" type="hidden" name="pos8" value=""/>
+          </div>
+          <div class="grid-item" id="9" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input class="text" type="hidden" name="pos9" value=""/>
+          </div>
+          <div class="grid-item" id="10" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input class="text" type="hidden" name="pos10" value=""/>
+          </div>  
+          <div class="grid-item" id="11" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input class="text" type="hidden" name="pos11" value=""/>
+          </div>
+          <div class="grid-item" id="12" ondrop="drop(event)" ondragover="allowDrop(event)">
+            <input class="text" type="hidden" name="pos12" value=""/>
+          </div>
+        </div>
+        <div class="top_container_buttons">          
+          <input class="button" type="submit" value="Generate" onclick="display()">
+          <button id="clear" class="button" type="button" onclick="window.location.reload();">Clear</button>
+        </div>
+      </form>
+    </div>
+      
+    <div class="img_outer_container">                               
+    <div id="img_cont" class="img_container">
+      <figure class="img_item">
+      <img id="A" name="A" class="img_select" src="https://res.cloudinary.com/demo/image/upload/r_200/v1663148439/docs/collage/photo-01.jpg" draggable="true" ondragstart="drag(event)">
+        
+      </figure>
+      <figure class="img_item">
+      <img id="B" name="B" class="img_select" src="https://res.cloudinary.com/demo/image/upload/r_200/v1663148545/docs/collage/photo-02.jpg" draggable="true" ondragstart="drag(event)">
+        
+        </figure>
+      <figure class="img_item">
+      <img id="C" name="C" class="img_select" src="https://res.cloudinary.com/demo/image/upload/r_200/v1663148563/docs/collage/photo-03.jpg" draggable="true" ondragstart="drag(event)">
+       
+        </figure>
+      <figure class="img_item">
+      <img id="D" name="D" class="img_select" src="https://res.cloudinary.com/demo/image/upload/r_200/v1663148564/docs/collage/photo-04.jpg" draggable="true" ondragstart="drag(event)">
+        
+        </figure>
+      <figure class="img_item">
+      <img id="E" name="E" class="img_select" src="https://res.cloudinary.com/demo/image/upload/r_200/v1663148572/docs/collage/photo-05.jpg" draggable="true" ondragstart="drag(event)">
+        
+        </figure>
+      <figure class="img_item">
+      <img id="F" name="F" class="img_select" src="https://res.cloudinary.com/demo/image/upload/r_200/v1663082653/docs/collage/photo-06.jpg" draggable="true" ondragstart="drag(event)">
+        
+        </figure>
+      <figure class="img_item">
+      <img id="G" name="G" class="img_select" src="https://res.cloudinary.com/demo/image/upload/r_200/v1663148574/docs/collage/photo-07.jpg" draggable="true" ondragstart="drag(event)">
+       
+        </figure>
+      <figure class="img_item">
+      <img id="H" name="H" class="img_select" src="https://res.cloudinary.com/demo/image/upload/r_200/v1663148594/docs/collage/photo-08.jpg" draggable="true" ondragstart="drag(event)">
+        
+        </figure>
+      <figure class="img_item">
+      <img id="I" name="I" class="img_select" src="https://res.cloudinary.com/demo/image/upload/r_200/v1663148608/docs/collage/photo-09.jpg" draggable="true" ondragstart="drag(event)">
+        
+        </figure>
+      <figure class="img_item">
+      <img id="J" name="J" class="img_select" src="https://res.cloudinary.com/demo/image/upload/r_200/v1663148601/docs/collage/photo-10.jpg" draggable="true" ondragstart="drag(event)">
+        
+        </figure>
+      <figure class="img_item">
+      <img id="K" name="K" class="img_select" src="https://res.cloudinary.com/demo/image/upload/r_200/v1663148574/docs/collage/photo-11.jpg" draggable="true" ondragstart="drag(event)">
+        
+        </figure>
+      <figure class="img_item">
+      <img id="L" name="L" class="img_select" src="https://res.cloudinary.com/demo/image/upload/r_200/v1663148566/docs/collage/photo-12.jpg" draggable="true" ondragstart="drag(event)">
+         
+          </figure>
+    </div>
+    </div>                                                  
+ <div class="top_container_left">        
+        <h1 id="message1">{{msg1}}</h1>
+        <img id="display_image" style="width: calc(30vw + 30px);" src="{{url}}" />    
+       <p style="align-self:center;margin-left:-50px;" id="message2">{{msg2}}</p>
+     </div>
+    </div>
+</body>
+    
+</html>
+
+<script>
+  function display(){ 
+    if (document.getElementsByName("pos1")[0].value==="" || document.getElementsByName("pos2")[0].value==="" || document.getElementsByName("pos3")[0].value==="" || document.getElementsByName("pos4")[0].value==="" || document.getElementsByName("pos5")[0].value==="" || document.getElementsByName("pos6")[0].value==="" || document.getElementsByName("pos7")[0].value==="" || document.getElementsByName("pos8")[0].value==="" || document.getElementsByName("pos9")[0].value==="" || document.getElementsByName("pos10")[0].value==="" || document.getElementsByName("pos11")[0].value==="" || document.getElementsByName("pos12")[0].value===""){
+      alert("You have to fill all the cells!");
+      return;
+    }
+    clear_imgs();  
+    var display_img = document.getElementById("display_image");
+    display_img.src = "https://cloudinary-res.cloudinary.com/image/upload/v1664382704/docs/loading.png";
+    display_img.style.width="50%";
+    display_img.style.marginLeft="50px";
+    var message2=document.getElementById("message2");
+    message2.innerHTML = "Loading your collage. This might take a few minutes.";
+    message2.style.marginLeft="150px";
+    document.getElementById("message1").innerHTML = "";
+    
+  }
+
+  
+function clear_imgs(){
+    const myNode = document.getElementById("img_cont");
+    myNode.innerHTML = '';
+    myNode.setAttribute('style', 'height: 0px');
+  }
+  
+function allowDrop(ev) {
+  var textbox="pos"+ev.target.id;
+  if(document.getElementsByName(textbox)[0].value == ""){
+    ev.preventDefault();
+  }
+}
+
+function drag(ev) {
+  ev.dataTransfer.setData("text", ev.target.id);
+}
+
+function drop(ev) {
+  ev.preventDefault();
+  var data = ev.dataTransfer.getData("text");
+  var textbox="pos"+ev.target.id;
+  var existing_match="none";
+  
+  /* Find the first cell (if exists) that contains the same image as the target cell. */
+  for (let l=1; l < 13; l++) {
+    var valid_boxes="pos"+l.toString();
+    if (document.getElementsByName(valid_boxes)[0].value==data && l.toString()!=ev.target.id){
+        var existing_match=l.toString();
+        l=15;
+      }
+  }
+  /* If a match is found, check that the cells in between target and existing match are empty. 
+  If not, end here and don't drop the image. */
+  if (existing_match!="none"){
+    check_all=[];     
+    check_all=get_between(existing_match,ev.target.id,data);
+    for (var e=0; e<check_all.length; e++) {
+     if (document.getElementsByName("pos"+check_all[e])[0].value!="" && document.getElementsByName("pos"+check_all[e])[0].value!=data){
+       document.getElementsByName("pos"+ev.target.id)[0].value=""
+      return
+    }
+  }
+}
+  
+  /* Checks passed. None of the cells in between are already occupied by a different image. */
+  /* Assign the target cell the value of the selected image, and drop image in the selected cell. */  
+  if(document.getElementsByName(textbox)[0].value == ""){
+    document.getElementsByName(textbox)[0].value=data; 
+  }
+  ev.target.appendChild(document.getElementById(data));
+   
+  
+  /* Make sure any empty cell with the same value as the target cell contains the selected image, in particular the cell the image is dragged FROM. */
+  var img_src=document.getElementsByName(data)[0].src; 
+  fill_img(data, img_src, ev.target.id);
+  
+  
+  /* Fill the cells between existing and target with the dragged img and assign them the value indicating its image. */
+  fill_between_cells(check_all,img_src,data);
+  
+  /* Error check: fill in any empty cells required to make the image span a square or rectangle. */
+  var found=[];
+  found=check_for_strays(data);
+  if ((found[0]==found[1] && found[0]==found[2]) || (found[0]==found[1] && found[2]==0) || (found[0]==found[2] && found[1]==0) || (found[1]==found[2] && found[0]==0) || (found[0]==0 && found[1]==0) || (found[0]==0 && found[2]==0) || (found[1]==0 && found[2]==0)){
+    return;
+  }
+  else{
+    fill_rows(found,data,img_src);
+  }
+}
+
+function fill_rows(found,data,img_src){
+  /* Find the row that contains the most instances of the target image, and the row(s) that contain the least instances. */ 
+  var longest=0;
+  var shortest=[]; 
+  var rows = {
+  1: [1,2,3,4],
+  2: [5,6,7,8],
+  3: [9,10,11,12]};
+  
+  if ((found[0]>found[1] && found[0]>found[2]) || (found[0]==found[1] && found[0]>found[0]) || (found[0]==found[2]&&found[0]>found[1])){
+    longest=1;
+  }
+  else if ((found[1]>found[0] && found[1]>found[2]) || (found[1]==found[0] && found[1]>found[2]) || (found[1]==found[2]&&found[1]>found[0])){
+    longest=2;
+  }
+  else if ((found[2]>found[0] && found[2]>found[1]) || (found[2]==found[0] && found[2]>found[1]) || (found[2]==found[1]&&found[2]>found[0])){
+    longest=3;
+  }
+  
+  if (found[0]!=0 && ((found[0]<found[1] && found[0]<found[2])||(found[0]<found[1] && found[2]==0)||(found[0]<found[2]||found[1]==0))){
+      shortest.push(1);
+    }
+  
+  if (found[1]!=0 && ((found[1]<found[0] && found[0]<found[2])||(found[1]<found[2] && found[0]==0)||(found[1]<found[0]||found[2]==0))){
+      shortest.push(2);
+    }
+  
+  if (found[2]!=0 && ((found[2]<found[0] && found[0]<found[1])||(found[2]<found[1] && found[0]==0)||(found[2]<found[0]||found[1]==0))){
+    shortest.push(3);
+  }
+
+  /* Fill in the row(s) with the least instances of the image to match the row with the most instances, from and to the same columns. */
+  /* Check which columns the image occupies in the row with the most instances. */
+  var from_to=[];
+  for (let h=0; h<longest+4; h++){
+    var testing_textbox="pos"+rows[longest][h];
+    try{
+      if (document.getElementsByName(testing_textbox)[0].value==data){
+        from_to.push(h);
+      }
+    }
+    catch(err){
+      console.log()
+    }    
+  }
+  /* Fill in those spaces in the rows that are lacking. */ 
+for (let s=0; s<shortest.length; s++){
+  for (let p=0; p<from_to.length; p++){ 
+    var fill_textbox="pos"+rows[shortest[s]][from_to[p]];
+    if (document.getElementsByName(fill_textbox)[0].value!=data && document.getElementsByName(fill_textbox)[0].value!=""){
+      alert("You have to fit your images in a square or rectangular shape. Try again!");
+      document.location.reload(true);
+    }
+    else if (document.getElementsByName(fill_textbox)[0].value==""){ 
+      document.getElementsByName(fill_textbox)[0].value=data;
+      var elem = document.createElement("img");
+      elem.src=img_src;
+      elem.setAttribute("height", "40");
+      elem.setAttribute("width", "40");
+      elem.setAttribute("alt", "Flower");
+      
+      if (!(hasImage(rows[shortest[s]][from_to[p]]))){
+        document.getElementById(rows[shortest[s]][from_to[p]]).appendChild(elem);
+      }
+    }
+  }
+  }
+}
+
+  
+function check_for_strays(data){
+  /* A single image must occupy the same number of cells in each row it's in, otherwise the image isn't laid out legally, in the shape of a square or rectangle. This error checks this by returning the number of instances of the image in each row. */
+  var found=[];
+  var row1=0;
+  var row2=0;
+  var row3=0;
+  for (let c=1; c<13; c++){
+    var test_cell="pos"+c.toString();
+    try{
+      if (document.getElementsByName(test_cell)[0].value==data){
+        if (c<5){
+         row1++; 
+        } 
+        else if (c<9){
+          row2++;
+        }
+        else {
+          row3++;
+        }
+      }
+    }
+    catch(err){
+      console.log()
+    }
+  }
+  found.push(row1, row2, row3);
+  return found;
+}  
+
+function fill_between_cells(cells_to_fill,img_src,data){
+  /* If any in between cell is already occupied by another image, stop. */
+  for(var c=0; c<cells_to_fill.length; c++){
+    var test_textbox="pos"+cells_to_fill[c];
+    if (document.getElementsByName(test_textbox)[0].value!="" && document.getElementsByName(test_textbox)[0].value!=data){
+      return
+    }
+  }
+  /* Fill between cells with the selected image and its value. */
+  for(var b=0; b<cells_to_fill.length; b++){
+    var textbox_to_fill="pos"+cells_to_fill[b];
+    document.getElementsByName(textbox_to_fill)[0].value=data;
+    var elem = document.createElement("img");
+    elem.src=img_src;
+    elem.setAttribute("height", "40");
+    elem.setAttribute("width", "40");
+    elem.setAttribute("alt", "Flower");
+    if (!(hasImage(cells_to_fill[b]))){
+      document.getElementById(cells_to_fill[b]).appendChild(elem);
+    }
+  }
+}
+  
+function fill_img(data, img_src, target){
+  /* Fill any empty cell whose value is the same as the target cell with the selected image. */
+    for (let i = 1; i < 13; i++) {
+      var test_textbox="pos"+i.toString();
+      try{
+        if (document.getElementsByName(test_textbox)[0].value==data && i.toString()!=target && !(hasImage(i.toString()))){
+          var elem = document.createElement("img");
+          elem.src=img_src;
+          elem.setAttribute("height", "40");
+          elem.setAttribute("width", "40");
+          elem.setAttribute("alt", "Flower");
+          document.getElementById(i.toString()).appendChild(elem);
+        }
+      }
+      catch(err){
+        console.log()
+      }
+    }
+}
+  
+function get_between(existing,target,data){
+  /* Retrieves all the cells between the target cell and its first existing match. */
+  const row1 = ["1", "2", "3", "4"];
+  const row2 = ["5", "6", "7", "8"];
+  const row3 = ["9", "10", "11", "12"];  
+  const col1 = ["1", "5", "9"];
+  const col2 = ["2", "6", "10"];
+  const col3 = ["3", "7", "11"];
+  const col4 = ["4", "8", "12"]; 
+  
+  if (row1.includes(existing)){
+    var e_row="row1";
+  }
+  else if (row2.includes(existing)){
+    var e_row="row2";
+  }
+  else {
+    var e_row="row3";
+  }
+  
+  if (col1.includes(existing)){
+    var e_col="col1";
+  }
+  else if (col2.includes(existing)){
+    var e_col="col2";
+  }
+  else if (col3.includes(existing)){
+    var e_col="col3";
+  }
+  else {
+    var e_col="col4";
+  }
+  
+  
+  if (row1.includes(target)){
+    var t_row="row1";
+  }
+  else if (row2.includes(target)){
+    var t_row="row2";
+  }
+  else {
+    var t_row="row3";
+  }
+  
+  if (col1.includes(target)){
+    var t_col="col1";
+  }
+  else if (col2.includes(target)){
+    var t_col="col2";
+  }
+  else if (col3.includes(target)){
+    var t_col="col3";
+  }
+  else {
+    var t_col="col4";
+  }  
+  
+  if (parseInt(e_row.charAt(e_row.length - 1))<parseInt(t_row.charAt(t_row.length - 1))){
+    var from_row=e_row;
+    var to_row=t_row;
+  }
+  else{
+    var from_row=t_row;
+    var to_row=e_row;
+  }
+  
+  if (parseInt(e_col.charAt(e_col.length - 1))<parseInt(t_col.charAt(t_col.length - 1))){
+    var from_col=e_col;
+    var to_col=t_col;
+  }
+  else{
+    var from_col=t_col;
+    var to_col=e_col;
+  }
+  
+  var cells_to_fill=[];
+  var start_col=parseInt(from_col.charAt(from_col.length - 1))-1;
+  var end_col=parseInt(to_col.charAt(to_col.length - 1))-1;
+
+  if (from_row=="row1"){
+    for (let x=start_col; x<end_col+1; x++){
+      cells_to_fill.push(row1[x]);
+    }
+  }
+  
+  if (from_row=="row2" || to_row=="row2" || (from_row=="row1" && to_row=="row3")){
+    for (let y=start_col; y<end_col+1; y++){
+      cells_to_fill.push(row2[y]);
+    }
+  }
+
+  if (to_row=="row3"){
+    for (let z=start_col; z<end_col+1; z++){
+      cells_to_fill.push(row3[z]);
+    }
+  }
+return cells_to_fill;
+}
+  
+function hasImage(id) {
+  /* Checks if a particular cell is empty. */
+    var childElements = document.getElementById(id).childNodes;
+    for (var i = 0; i < childElements.length; i++) {
+        if (childElements[i].localName != null && childElements[i].localName.toLowerCase() == "img") {
+            return true;
+        }
+    }
+    return false;
+}  
+</script>      

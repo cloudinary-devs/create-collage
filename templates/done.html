@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="static/main.css">
+    <title>Cloudinary Collage</title>
+    <link rel="icon" href="https://res.cloudinary.com/yelenik/image/upload/c_pad,w_64,h_64/v1649319855/cloudinary_logo.png">
+    <style>
+      .top_container_left{
+        display:flex;
+        align-items:center;
+        flex-wrap:nowrap;
+        flex-direction:column;
+        margin-left:5%;
+        width:90%;
+        max-width:725px;
+      }
+      .top_container_buttons{
+        display:flex;
+        justify-content:center;
+        align-items:center;
+        flex-wrap:nowrap;
+        
+      }
+      .button {
+        background: #005CE4;
+        color: #fff;
+        border: 1px solid #eee;
+        border-radius: 4px
+        box-shadow: 5px 5px 5px #eee;
+        text-shadow: none;
+        width:140px;
+        height:40px;
+        font-size:14px;
+        margin-top:20px;
+        margin-bottom:20px;
+        margin-right:5px;
+        margin-left:5px;
+
+      }
+      .button:hover {
+        background: #000080;
+      }
+      .button:focus {
+        background: #6495ed;
+      }
+      .button:active:after {
+        background: #016ABC;
+
+    </style>
+  </head>
+   <body style="display:flex; justify-content:center; margin-left:60px;">
+    <div style="self-align:center;">
+          <div class="top_container_left">
+
+        
+        <h1 id="display_message">{{msg}}</h1>
+        
+   
+          
+           
+        <img id="display_image" src="{{url}}" />
+            
+      
+  
+      
+      <form method="POST">
+      
+        
+        <div class="top_container_buttons">          
+          <input class="button" type="submit" value="Create New Collage">
+          
+        </div>
+      </form>
+          
+      </div>
+     </div>
+
+    </body>
